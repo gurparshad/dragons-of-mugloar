@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { GameIdProvider } from "./context/GameIdContext";
 import { PlayerDetailsProvider } from "./context/PlayerDetailsContext";
+require("dotenv").config();
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(

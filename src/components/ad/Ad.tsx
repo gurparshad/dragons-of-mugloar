@@ -4,17 +4,17 @@ import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import { PlayerDetailsContext } from "../../context/PlayerDetailsContext";
 import Confetti from "react-confetti";
+import { getGameLevelCode } from "../../utils/helpers";
 
 interface AdProps {
+  adId: string;
   message: string;
   reward: number;
   expiresIn: number;
   probability: string;
-  handleClick: () => void;
-  isModalOpen: boolean;
-  setModalOpen: (value: boolean) => void;
-  levelCode: number;
   handlePlay: () => void;
+  isVictoryAnimation: boolean;
+  confettiPieces: number;
 }
 
 const customStyles = {
@@ -30,16 +30,26 @@ const Ad: React.FC<AdProps> = ({
   reward,
   expiresIn,
   probability,
-  handleClick,
-  isModalOpen,
-  setModalOpen,
-  levelCode,
   handlePlay,
+  adId,
+  isVictoryAnimation,
+  confettiPieces,
 }) => {
   const navigate = useNavigate();
-  const { playerDetails, setPlayerDetails } = useContext(PlayerDetailsContext);
-  const [isVictoryAnimation, setVictoryAnimation] = useState<boolean>(false);
-  const [confettiPieces, setConfettiPieces] = useState<number>(0);
+  const { playerDetails } = useContext(PlayerDetailsContext);
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
+  const [levelCode, setLevelCode] = useState<number>(0);
+
+  const handleAdClick = (probability: string) => {
+    setModalOpen(true);
+    //@ts-ignore
+    setLevelCode(getGameLevelCode(probability));
+  };
+
+  const handleClickPlay = () => {
+    setModalOpen(false);
+    handlePlay();
+  };
 
   return (
     <div className="ad">
@@ -47,7 +57,7 @@ const Ad: React.FC<AdProps> = ({
       <h2>Reward: {reward}</h2>
       <h2>Dificulty: {probability}</h2>
       <h2>ExpiresIn: {expiresIn}</h2>
-      <button className="playNowButton" onClick={handleClick}>
+      <button className="playNowButton" onClick={() => handleAdClick(probability)}>
         Play now
       </button>
 
@@ -56,7 +66,7 @@ const Ad: React.FC<AdProps> = ({
         height={window.innerHeight}
         numberOfPieces={confettiPieces}
         run={isVictoryAnimation}
-        gravity={0.2}
+        gravity={0.5}
       />
       <Modal isOpen={isModalOpen} style={customStyles}>
         <button onClick={() => setModalOpen(false)}>Close</button>
@@ -68,12 +78,12 @@ const Ad: React.FC<AdProps> = ({
             </h3>
             <h3>{levelCode}</h3>
             <button onClick={() => navigate("/shop")}>Upgrade</button>
-            <button onClick={handlePlay}>Play anyway</button>
+            <button onClick={handleClickPlay}>Play anyway</button>
           </>
         ) : (
           <>
             <h3>{levelCode}</h3>
-            <button onClick={handlePlay}>Play Now</button>
+            <button onClick={handleClickPlay}>Play Now</button>
           </>
         )}
       </Modal>

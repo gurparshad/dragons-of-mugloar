@@ -7,6 +7,6 @@ export const Levels = [
     {probability: 'Gamble', value: 5},
     {probability: 'Risky', value: 6},
     {probability: 'Playing with fire', value: 7},
-    {probability: 'Rather determinental', value: 8},
+    {probability: 'Rather detrimental', value: 8},
     {probability: 'Suicide mission', value: 9}
 ]

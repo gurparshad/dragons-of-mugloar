@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import Ads from "./views/Ads";
 import Home from "./views/Home";
@@ -9,10 +9,13 @@ import { PlayerDetailsContext } from "./context/PlayerDetailsContext";
 const App = () => {
   const { playerDetails } = useContext(PlayerDetailsContext);
   const { score, gold, lives, level } = playerDetails;
+  const navigate = useNavigate();
   return (
     <>
       <div className="header">
-        <h2>Dragon of Mugloar</h2>
+        <h2 style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
+          Dragon of Mugloar
+        </h2>
         <div className="details">
           <h2>Score: {score}</h2>
           <h2>Gold: {gold}</h2>
