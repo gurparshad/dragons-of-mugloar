@@ -7,12 +7,7 @@ import { MugloarDragonApi } from "../api";
 import { AppRoutes } from "../utils/constants";
 import "../styles/shop.css";
 import Button from "../components/button/Button";
-
-type ShopItemType = {
-  id: string;
-  name: string;
-  cost: number;
-};
+import { ShopItemType } from "../utils/types";
 
 const Shop = () => {
   const mugloarDragonApi = new MugloarDragonApi();

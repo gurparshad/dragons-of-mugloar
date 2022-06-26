@@ -8,14 +8,7 @@ import { MugloarDragonApi } from "../api";
 import "../styles/ads.css";
 import Button from "../components/button/Button";
 import ModalComponent from "../components/modal/ModalComponent";
-
-type AdType = {
-  adId: string;
-  message: string;
-  reward: number;
-  expiresIn: number;
-  probability: string;
-};
+import { AdType } from "../utils/types";
 
 const Ads = () => {
   const mugloarDragonApi = new MugloarDragonApi();
