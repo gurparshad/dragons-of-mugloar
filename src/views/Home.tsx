@@ -4,6 +4,7 @@ import { gameIdContext } from "../context/GameIdContext";
 import { MugloarDragonApi } from "../api";
 import { AppRoutes } from "../utils/constants";
 import Button from "../components/button/Button";
+import "../styles/home.css";
 
 const Home = () => {
   const mugloarDragonApi = new MugloarDragonApi();
@@ -37,7 +38,8 @@ const Home = () => {
           <li>Earn the gold, level up the, at certain level the red cards will automatically change to green.</li>
         </ul>
       </div>
-      <Button onClick={handleGameStart} title="Start Game" />
+      <Button onClick={handleGameStart} title="Start Game" className="startGameButton" />
+      <div className="flame" />
     </div>
   );
 };
