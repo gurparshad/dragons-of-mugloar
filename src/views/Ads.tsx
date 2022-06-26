@@ -2,27 +2,27 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Ad from "../components/ad/Ad";
 import { AppRoutes } from "../utils/constants";
-import { GameIdContext } from "../context/GameIdContext";
-import { PlayerDetailsContext } from "../context/PlayerDetailsContext";
+import { gameIdContext } from "../context/GameIdContext";
+import { playerDetailsContext } from "../context/PlayerDetailsContext";
 import { MugloarDragonApi } from "../api";
 import "../styles/ads.css";
 import Button from "../components/button/Button";
 import ModalComponent from "../components/modal/ModalComponent";
 
-interface Ad {
+type AdType = {
   adId: string;
   message: string;
   reward: number;
   expiresIn: number;
   probability: string;
-}
+};
 
 const Ads = () => {
   const mugloarDragonApi = new MugloarDragonApi();
   const navigate = useNavigate();
-  const { gameId } = useContext(GameIdContext);
-  const [ads, setAds] = useState<Ad[]>([]);
-  const { playerDetails, setPlayerDetails } = useContext(PlayerDetailsContext);
+  const { gameId } = useContext(gameIdContext);
+  const [ads, setAds] = useState<AdType[]>([]);
+  const { playerDetails, setPlayerDetails } = useContext(playerDetailsContext);
   const [isVictoryAnimation, setVictoryAnimation] = useState<boolean>(false);
   const [confettiPieces, setConfettiPieces] = useState<number>(0);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);

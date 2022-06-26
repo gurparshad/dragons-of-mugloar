@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 interface PlayerDetails {
   score: number;
@@ -12,7 +12,7 @@ interface PlayerDetailsContext {
   setPlayerDetails: (value: PlayerDetails) => void;
 }
 
-export const PlayerDetailsContext = createContext<PlayerDetailsContext>({
+export const playerDetailsContext = createContext<PlayerDetailsContext>({
   playerDetails: {
     score: 0,
     lives: 3,
@@ -31,13 +31,13 @@ export const PlayerDetailsProvider = ({ children }: any) => {
   });
 
   return (
-    <PlayerDetailsContext.Provider
+    <playerDetailsContext.Provider
       value={{
         playerDetails,
         setPlayerDetails,
       }}
     >
       {children}
-    </PlayerDetailsContext.Provider>
+    </playerDetailsContext.Provider>
   );
 };

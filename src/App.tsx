@@ -4,12 +4,12 @@ import "./App.css";
 import Ads from "./views/Ads";
 import Home from "./views/Home";
 import Shop from "./views/Shop";
-import { PlayerDetailsContext } from "./context/PlayerDetailsContext";
+import { playerDetailsContext } from "./context/PlayerDetailsContext";
 import { AppRoutes } from "./utils/constants";
 import ProtectedRoutes from "./protectedRoutes";
 
 const App = () => {
-  const { playerDetails } = useContext(PlayerDetailsContext);
+  const { playerDetails } = useContext(playerDetailsContext);
   const { score, gold, lives, level } = playerDetails;
   const navigate = useNavigate();
   return (

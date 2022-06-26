@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { GameIdContext } from "../context/GameIdContext";
+import { gameIdContext } from "../context/GameIdContext";
 import { MugloarDragonApi } from "../api";
 import { AppRoutes } from "../utils/constants";
 import Button from "../components/button/Button";
@@ -8,7 +8,7 @@ import Button from "../components/button/Button";
 const Home = () => {
   const mugloarDragonApi = new MugloarDragonApi();
   const navigate = useNavigate();
-  const { setGameId } = useContext(GameIdContext);
+  const { setGameId } = useContext(gameIdContext);
 
   useEffect(() => {
     const gameId = localStorage.getItem("gameId");

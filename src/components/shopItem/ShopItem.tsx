@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import Button from "../button/Button";
 import ModalComponent from "../modal/ModalComponent";
-import { PlayerDetailsContext } from "../../context/PlayerDetailsContext";
+import { playerDetailsContext } from "../../context/PlayerDetailsContext";
 import "./shopItem.css";
 
 interface ShopItemProps {
@@ -12,7 +12,7 @@ interface ShopItemProps {
 }
 
 const ShopItem: React.FC<ShopItemProps> = ({ name, cost, handleClick }) => {
-  const { playerDetails } = useContext(PlayerDetailsContext);
+  const { playerDetails } = useContext(playerDetailsContext);
   const handleShopItemClick = () => {
     handleClick();
     setModalOpen(false);

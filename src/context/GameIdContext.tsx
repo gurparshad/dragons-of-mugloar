@@ -1,6 +1,11 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
-export const GameIdContext = createContext({
+interface GameIdContext {
+  gameId: string;
+  setGameId: (value: string) => void;
+}
+
+export const gameIdContext = createContext<GameIdContext>({
   gameId: localStorage.getItem("gameId") ?? "",
   setGameId: (value: string) => {},
 });
@@ -9,13 +14,13 @@ export const GameIdProvider = ({ children }: any) => {
   const [gameId, setGameId] = useState(localStorage.getItem("gameId") ?? "");
 
   return (
-    <GameIdContext.Provider
+    <gameIdContext.Provider
       value={{
         gameId,
         setGameId,
       }}
     >
       {children}
-    </GameIdContext.Provider>
+    </gameIdContext.Provider>
   );
 };

@@ -1,25 +1,24 @@
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ShopItem from "../components/shopItem/ShopItem";
-import { GameIdContext } from "../context/GameIdContext";
-import { PlayerDetailsContext } from "../context/PlayerDetailsContext";
+import { gameIdContext } from "../context/GameIdContext";
+import { playerDetailsContext } from "../context/PlayerDetailsContext";
 import { MugloarDragonApi } from "../api";
 import { AppRoutes } from "../utils/constants";
 import "../styles/shop.css";
 import Button from "../components/button/Button";
 
-interface ShopItem {
+type ShopItemType = {
   id: string;
   name: string;
   cost: number;
-}
+};
 
 const Shop = () => {
   const mugloarDragonApi = new MugloarDragonApi();
-  const { gameId } = useContext(GameIdContext);
-  const { playerDetails, setPlayerDetails } = useContext(PlayerDetailsContext);
-  const [shopItems, setShopItems] = useState<ShopItem[]>([]);
+  const { gameId } = useContext(gameIdContext);
+  const { playerDetails, setPlayerDetails } = useContext(playerDetailsContext);
+  const [shopItems, setShopItems] = useState<ShopItemType[]>([]);
   const navigate = useNavigate();
 
   const handleItemPurchase = async (itemId: string) => {

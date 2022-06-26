@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PlayerDetailsContext } from "../../context/PlayerDetailsContext";
+import { playerDetailsContext } from "../../context/PlayerDetailsContext";
 import Confetti from "react-confetti";
 import { getGameLevelCode } from "../../utils/helpers";
 import { AppRoutes } from "../../utils/constants";
@@ -28,7 +28,7 @@ const Ad: React.FC<AdProps> = ({
   confettiPieces,
 }) => {
   const navigate = useNavigate();
-  const { playerDetails } = useContext(PlayerDetailsContext);
+  const { playerDetails } = useContext(playerDetailsContext);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [levelCode, setLevelCode] = useState<number>(0);
 
