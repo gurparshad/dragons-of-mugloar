@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./shopItem.css";
 import Modal from "react-modal";
+import Button from "../button/Button";
 
 interface ShopItemProps {
   id: string;
@@ -23,12 +24,12 @@ const ShopItem: React.FC<ShopItemProps> = ({ id, name, cost, handleClick }) => {
     <div className="shopItem">
       <h2>{name}</h2>
       <h3>{cost}</h3>
-      <button onClick={() => setModalOpen(true)}>Buy</button>
+      <Button onClick={() => setModalOpen(true)} title="Buy" />
       <Modal isOpen={isModalOpen} style={customStyles}>
-        <button onClick={() => setModalOpen(false)}>Close</button>
+        <Button onClick={() => setModalOpen(false)} title="Close" />
         <h4>It cost {cost} gold are you sure you want to but it.</h4>
-        <button onClick={handleClick}>Buy now</button>
-        <button onClick={() => setModalOpen(false)}>Cancel</button>
+        <Button onClick={handleClick} title="Buy now" />
+        <Button onClick={() => setModalOpen(false)} title="Cancel" />
       </Modal>
     </div>
   );

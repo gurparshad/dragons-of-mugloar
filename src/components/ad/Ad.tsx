@@ -6,6 +6,7 @@ import { PlayerDetailsContext } from "../../context/PlayerDetailsContext";
 import Confetti from "react-confetti";
 import { getGameLevelCode } from "../../utils/helpers";
 import { AppRoutes } from "../../utils/constants";
+import Button from "../button/Button";
 
 interface AdProps {
   message: string;
@@ -56,10 +57,7 @@ const Ad: React.FC<AdProps> = ({
       <h2>Reward: {reward}</h2>
       <h2>Dificulty: {probability}</h2>
       <h2>ExpiresIn: {expiresIn}</h2>
-      <button className="playNowButton" onClick={() => handleAdClick(probability)}>
-        Play now
-      </button>
-
+      <Button onClick={() => handleAdClick(probability)} title="Play now" />
       <Confetti
         width={window.innerWidth}
         height={window.innerHeight}
@@ -68,21 +66,20 @@ const Ad: React.FC<AdProps> = ({
         gravity={0.5}
       />
       <Modal isOpen={isModalOpen} style={customStyles}>
-        <button onClick={() => setModalOpen(false)}>Close</button>
-        <button>Start</button>
+        <Button onClick={() => setModalOpen(false)} title="Close" />
         {levelCode > playerDetails.level ? (
           <>
             <h3>
               You are at level {playerDetails.level} which is not sufficient for this task. We recommend to upgrade.
             </h3>
             <h3>{levelCode}</h3>
-            <button onClick={() => navigate(AppRoutes.SHOP)}>Upgrade</button>
-            <button onClick={handleClickPlay}>Play anyway</button>
+            <Button onClick={() => navigate(AppRoutes.SHOP)} title="Upgrade" />
+            <Button onClick={handleClickPlay} title="Play anyway" />
           </>
         ) : (
           <>
             <h3>{levelCode}</h3>
-            <button onClick={handleClickPlay}>Play Now</button>
+            <Button onClick={handleClickPlay} title="Play Now" />
           </>
         )}
       </Modal>

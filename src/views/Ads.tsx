@@ -6,6 +6,8 @@ import { AppRoutes, Levels } from "../utils/constants";
 import { GameIdContext } from "../context/GameIdContext";
 import { PlayerDetailsContext } from "../context/PlayerDetailsContext";
 import { MugloarDragonApi } from "../api";
+import "../styles/ads.css";
+import Button from "../components/button/Button";
 
 interface Ad {
   adId: string;
@@ -60,19 +62,21 @@ const Ads = () => {
   return (
     <div>
       <h1>Ads</h1>
-      <button onClick={() => navigate(AppRoutes.SHOP)}>Shop</button>
-      <button onClick={handleGameQuit}>Quit</button>
-      {ads.map((ad) => (
-        <Ad
-          message={ad.message}
-          reward={ad.reward}
-          expiresIn={ad.expiresIn}
-          probability={ad.probability}
-          handlePlay={() => handlePlay(ad.adId)}
-          isVictoryAnimation={isVictoryAnimation}
-          confettiPieces={confettiPieces}
-        />
-      ))}
+      <Button onClick={() => navigate(AppRoutes.SHOP)} title="Shop" />
+      <Button onClick={handleGameQuit} title="Quit" />
+      <div className="ads">
+        {ads.map((ad) => (
+          <Ad
+            message={ad.message}
+            reward={ad.reward}
+            expiresIn={ad.expiresIn}
+            probability={ad.probability}
+            handlePlay={() => handlePlay(ad.adId)}
+            isVictoryAnimation={isVictoryAnimation}
+            confettiPieces={confettiPieces}
+          />
+        ))}
+      </div>
     </div>
   );
 };

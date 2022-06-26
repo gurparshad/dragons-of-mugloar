@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { GameIdContext } from "../context/GameIdContext";
 import { MugloarDragonApi } from "../api";
 import { AppRoutes } from "../utils/constants";
+import Button from "../components/button/Button";
 
 const Home = () => {
   const mugloarDragonApi = new MugloarDragonApi();
@@ -24,7 +25,7 @@ const Home = () => {
   };
   return (
     <div>
-      <button onClick={handleGameStart}>Start game</button>
+      <Button onClick={handleGameStart} title="Start Game" />
     </div>
   );
 };

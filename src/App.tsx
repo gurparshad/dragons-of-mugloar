@@ -15,7 +15,7 @@ const App = () => {
     <>
       <div className="header">
         <h2 style={{ cursor: "pointer" }} onClick={() => navigate(AppRoutes.HOME)}>
-          Dragon of Mugloar
+          Dragons of Mugloar
         </h2>
         <div className="details">
           <h2>Score: {score}</h2>

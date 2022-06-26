@@ -6,6 +6,8 @@ import { GameIdContext } from "../context/GameIdContext";
 import { PlayerDetailsContext } from "../context/PlayerDetailsContext";
 import { MugloarDragonApi } from "../api";
 import { AppRoutes } from "../utils/constants";
+import "../styles/shop.css";
+import Button from "../components/button/Button";
 
 interface ShopItem {
   id: string;
@@ -41,10 +43,12 @@ const Shop = () => {
   return (
     <div>
       <h1>this is shop</h1>
-      <button onClick={() => navigate(AppRoutes.ADS)}>Back to playground</button>
-      {shopItems.map((item) => (
-        <ShopItem id={item.id} name={item.name} cost={item.cost} handleClick={() => handleItemPurchase(item.id)} />
-      ))}
+      <Button onClick={() => navigate(AppRoutes.ADS)} title="Back to playground" />
+      <div className="shopItems">
+        {shopItems.map((item) => (
+          <ShopItem id={item.id} name={item.name} cost={item.cost} handleClick={() => handleItemPurchase(item.id)} />
+        ))}
+      </div>
     </div>
   );
 };
