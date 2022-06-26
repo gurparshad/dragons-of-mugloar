@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Ad from "../components/ad/Ad";
-import { Levels } from "../utils/constants";
+import { AppRoutes, Levels } from "../utils/constants";
 import { GameIdContext } from "../context/GameIdContext";
 import { PlayerDetailsContext } from "../context/PlayerDetailsContext";
+import { MugloarDragonApi } from "../api";
 
 interface Ad {
   adId: string;
@@ -15,6 +16,7 @@ interface Ad {
 }
 
 const Ads = () => {
+  const mugloarDragonApi = new MugloarDragonApi();
   const navigate = useNavigate();
   const { gameId } = useContext(GameIdContext);
   const [ads, setAds] = useState<Ad[]>([]);
@@ -23,12 +25,12 @@ const Ads = () => {
   const [confettiPieces, setConfettiPieces] = useState<number>(0);
 
   const fetchData = async () => {
-    const { data } = await axios.get(`https://dragonsofmugloar.com/api/v2/${gameId}/messages`);
+    const data = await mugloarDragonApi.getAds(gameId);
     setAds(data);
   };
 
   const handlePlay = async (adId: string) => {
-    const { data } = await axios.post(`https://dragonsofmugloar.com/api/v2/${gameId}/solve/${adId}`);
+    const data = await mugloarDragonApi.solveAd(gameId, adId);
     const handleAnimation = () => {
       setConfettiPieces(0);
     };
@@ -53,8 +55,7 @@ const Ads = () => {
   return (
     <div>
       <h1>Ads</h1>
-      <button onClick={() => navigate("/shop")}>Shop</button>
-      <button onClick={fetchData}>Load more</button>
+      <button onClick={() => navigate(AppRoutes.SHOP)}>Shop</button>
       {ads.map((ad) => (
         <Ad
           message={ad.message}

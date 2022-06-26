@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { PlayerDetailsContext } from "../../context/PlayerDetailsContext";
 import Confetti from "react-confetti";
 import { getGameLevelCode } from "../../utils/helpers";
+import { AppRoutes } from "../../utils/constants";
 
 interface AdProps {
   adId: string;
@@ -77,7 +78,7 @@ const Ad: React.FC<AdProps> = ({
               You are at level {playerDetails.level} which is not sufficient for this task. We recommend to upgrade.
             </h3>
             <h3>{levelCode}</h3>
-            <button onClick={() => navigate("/shop")}>Upgrade</button>
+            <button onClick={() => navigate(AppRoutes.SHOP)}>Upgrade</button>
             <button onClick={handleClickPlay}>Play anyway</button>
           </>
         ) : (

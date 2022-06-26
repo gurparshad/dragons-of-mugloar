@@ -5,6 +5,7 @@ import Ads from "./views/Ads";
 import Home from "./views/Home";
 import Shop from "./views/Shop";
 import { PlayerDetailsContext } from "./context/PlayerDetailsContext";
+import { AppRoutes } from "./utils/constants";
 
 const App = () => {
   const { playerDetails } = useContext(PlayerDetailsContext);
@@ -13,7 +14,7 @@ const App = () => {
   return (
     <>
       <div className="header">
-        <h2 style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
+        <h2 style={{ cursor: "pointer" }} onClick={() => navigate(AppRoutes.HOME)}>
           Dragon of Mugloar
         </h2>
         <div className="details">
@@ -25,9 +26,9 @@ const App = () => {
       </div>
       <div className="main">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/ads" element={<Ads />} />
-          <Route path="/shop" element={<Shop />} />
+          <Route path={AppRoutes.HOME} element={<Home />} />
+          <Route path={AppRoutes.ADS} element={<Ads />} />
+          <Route path={AppRoutes.SHOP} element={<Shop />} />
         </Routes>
       </div>
     </>

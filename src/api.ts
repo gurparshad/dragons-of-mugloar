@@ -1,18 +1,14 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
-// import {
-//   getExchangeRateRequestParams,
-//   getTransactionsRequestParams,
-// } from "./utils/types";
 
 export class MugloarDragonApi {
   private client: AxiosInstance;
 
   private routes = {
     START_GAME: '/game/start',
-    SHOP: '/:gameId/shop',
-    GET_ADS: '/:gameId/messages',
-    SOLVE_AD: '/:gameId/solve/:adId',
-    PURCHASE_ITEM: '/:gameId/shop/buy/:itemId'
+    SHOP: (gameId: string) => `/${gameId}/shop`,
+    GET_ADS: (gameId: string) => `/${gameId}/messages`,
+    SOLVE_AD: (gameId: string, adId: string) => `/${gameId}/solve/${adId}`,
+    PURCHASE_ITEM: (gameId: string, itemId: string) => `/${gameId}/shop/buy/${itemId}`
   };
 
   private handleRequest = async (request: Promise<AxiosResponse<any>>) =>
@@ -37,12 +33,9 @@ export class MugloarDragonApi {
         return false;
       });
 
-  constructor(apiToken?: string, apiBaseUrl?: string) {
+  constructor() {
     this.client = axios.create({
-      baseURL: apiBaseUrl ?? process.env.API_BASE_URL,
-      headers: {
-        Authorization: `Bearer ${apiToken}`,
-      },
+      baseURL: process.env.REACT_APP_API_BASE_URL
     });
   }
 
@@ -52,7 +45,19 @@ export class MugloarDragonApi {
     );
   };
 
-//   public startGame = async () => {
-//     return await this.handleRequest(this.client.get(this.routes.CURRENT_USER));
-//   };
+  public shop = async (gameId: string) => {
+    return await this.handleRequest(this.client.get(this.routes.SHOP(gameId)));
+  };
+
+  public purchaseItem = async (gameId: string, itemId: string) => {
+    return await this.handleMutationRequest(this.client.post(this.routes.PURCHASE_ITEM(gameId, itemId)));
+  }
+
+  public getAds = async (gameId: string) => {
+    return await this.handleRequest(this.client.get(this.routes.GET_ADS(gameId)));
+  }
+
+  public solveAd = async (gameId: string, adId: string) => {
+    return await this.handleMutationRequest(this.client.post(this.routes.SOLVE_AD(gameId, adId)));
+  }
 }

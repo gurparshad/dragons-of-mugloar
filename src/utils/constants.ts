@@ -1,6 +1,12 @@
+export const AppRoutes = {
+    HOME: '/',
+    SHOP: '/shop',
+    ADS: '/ads',
+}
+
 export const Levels = [
-    {probability: 'Sure thing', value: 0},
-    {probability: 'Piece of cake', value: 1},
+    {probability: 'Piece of cake', value: 0},
+    {probability: 'Sure thing', value: 1},
     {probability: 'Walk in the park', value: 2},
     {probability: 'Quite likely', value: 3},
     {probability: 'Hmmm....', value: 4},
