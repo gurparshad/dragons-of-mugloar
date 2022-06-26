@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 
-interface ModalComponentProps {
+interface ReactModalProps {
   isOpen: boolean;
   children: any;
 }
@@ -17,7 +17,7 @@ const customModalStyles = {
   },
 };
 
-const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, children }) => {
+const ReactModal: React.FC<ReactModalProps> = ({ isOpen, children }) => {
   return (
     <Modal isOpen={isOpen} style={customModalStyles}>
       {children}
@@ -25,4 +25,4 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, children }) => 
   );
 };
 
-export default ModalComponent;
+export default ReactModal;

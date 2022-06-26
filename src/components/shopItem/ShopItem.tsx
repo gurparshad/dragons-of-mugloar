@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import Button from "../button/Button";
-import ModalComponent from "../modal/ModalComponent";
+import ReactModal from "../modal/ReactModal";
 import { playerDetailsContext } from "../../context/PlayerDetailsContext";
 import "./shopItem.css";
 
@@ -23,11 +23,11 @@ const ShopItem: React.FC<ShopItemProps> = ({ name, cost, handleClick }) => {
       <h2>{name}</h2>
       <h3>Gold: {cost}</h3>
       <Button onClick={() => setModalOpen(true)} title="Buy" disabled={playerDetails.gold < cost} />
-      <ModalComponent isOpen={isModalOpen}>
+      <ReactModal isOpen={isModalOpen}>
         <h4>It cost {cost} gold are you sure you want to but it.</h4>
         <Button onClick={handleShopItemClick} title="Buy now" />
         <Button onClick={() => setModalOpen(false)} title="Cancel" />
-      </ModalComponent>
+      </ReactModal>
     </div>
   );
 };

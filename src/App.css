@@ -1,5 +1,5 @@
 .header {
-  background: rgb(68, 111, 146);
+  background: chocolate;
   margin-top: 0px;
   padding: 10px 20px;
   display: flex;
@@ -10,5 +10,5 @@
   gap: 20px;
 }
 .main {
-  padding: 10px;
+  padding: 10px 20px;
 }

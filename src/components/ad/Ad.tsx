@@ -5,8 +5,8 @@ import Confetti from "react-confetti";
 import { getGameLevelCode } from "../../utils/helpers";
 import { AppRoutes } from "../../utils/constants";
 import Button from "../button/Button";
-import ModalComponent from "../modal/ModalComponent";
 import "./ad.css";
+import ReactModal from "../modal/ReactModal";
 
 interface AdProps {
   message: string;
@@ -47,7 +47,7 @@ const Ad: React.FC<AdProps> = ({
     <div
       className="ad"
       // @ts-ignore
-      style={{ background: playerDetails.level < getGameLevelCode(probability) ? "#e62e00" : "#2eb82e" }}
+      style={{ background: playerDetails.level < getGameLevelCode(probability) ? "darkred" : "forestgreen" }}
     >
       <h2>{message}</h2>
       <h2>Reward: {reward}</h2>
@@ -61,22 +61,22 @@ const Ad: React.FC<AdProps> = ({
         run={isVictoryAnimation}
         gravity={0.5}
       />
-      <ModalComponent isOpen={isModalOpen}>
+      <ReactModal isOpen={isModalOpen}>
         <Button onClick={() => setModalOpen(false)} title="Close" />
         {levelCode > playerDetails.level ? (
           <>
             <h3>
-              You are at level {playerDetails.level} which is not sufficient for this task. We recommend to upgrade.
+              You are at level {playerDetails.level} which is not sufficient for this task of level {levelCode}. Please
+              Upgrade
             </h3>
             <Button onClick={() => navigate(AppRoutes.SHOP)} title="Upgrade" />
-            <Button onClick={handleClickPlay} title="Play anyway" />
           </>
         ) : (
           <>
             <Button onClick={handleClickPlay} title="Play Now" />
           </>
         )}
-      </ModalComponent>
+      </ReactModal>
     </div>
   );
 };

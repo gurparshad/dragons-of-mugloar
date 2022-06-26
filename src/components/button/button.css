@@ -6,3 +6,6 @@
   font-size: 20px;
   cursor: pointer;
 }
+.button:hover {
+  background: chocolate;
+}

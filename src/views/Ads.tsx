@@ -7,7 +7,7 @@ import { playerDetailsContext } from "../context/PlayerDetailsContext";
 import { MugloarDragonApi } from "../api";
 import "../styles/ads.css";
 import Button from "../components/button/Button";
-import ModalComponent from "../components/modal/ModalComponent";
+import ReactModal from "../components/modal/ReactModal";
 import { AdType } from "../utils/types";
 
 const Ads = () => {
@@ -77,9 +77,12 @@ const Ads = () => {
   return (
     <div>
       <h1>Ads</h1>
-      <Button onClick={() => navigate(AppRoutes.SHOP)} title="Shop" />
-      <Button onClick={handleGameQuit} title="Quit" />
-      <ModalComponent isOpen={isModalOpen}>
+      <div className="buttonsContainer">
+        <Button onClick={() => navigate(AppRoutes.SHOP)} title="Shop" />
+        <Button onClick={handleGameQuit} title="Quit" />
+      </div>
+
+      <ReactModal isOpen={isModalOpen}>
         {isMissionSuccess ? (
           <>
             <h4>Congrats you won</h4>
@@ -91,7 +94,7 @@ const Ads = () => {
             <Button title="close" onClick={() => setModalOpen(false)} />
           </>
         )}
-      </ModalComponent>
+      </ReactModal>
       <div className="ads">
         {ads.map((ad) => (
           <Ad

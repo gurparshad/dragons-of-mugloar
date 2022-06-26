@@ -36,7 +36,7 @@ const Shop = () => {
   }, []);
   return (
     <div>
-      <h1>this is shop</h1>
+      <h1>Welcome to the Shop</h1>
       <Button onClick={() => navigate(AppRoutes.ADS)} title="Back to playground" />
       <div className="shopItems">
         {shopItems.map((item) => (
