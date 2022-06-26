@@ -6,6 +6,7 @@ import Home from "./views/Home";
 import Shop from "./views/Shop";
 import { PlayerDetailsContext } from "./context/PlayerDetailsContext";
 import { AppRoutes } from "./utils/constants";
+import ProtectedRoutes from "./protectedRoutes";
 
 const App = () => {
   const { playerDetails } = useContext(PlayerDetailsContext);
@@ -27,8 +28,10 @@ const App = () => {
       <div className="main">
         <Routes>
           <Route path={AppRoutes.HOME} element={<Home />} />
-          <Route path={AppRoutes.ADS} element={<Ads />} />
-          <Route path={AppRoutes.SHOP} element={<Shop />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path={AppRoutes.ADS} element={<Ads />} />
+            <Route path={AppRoutes.SHOP} element={<Shop />} />
+          </Route>
         </Routes>
       </div>
     </>

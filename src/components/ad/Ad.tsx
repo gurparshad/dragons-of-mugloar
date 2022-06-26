@@ -44,16 +44,19 @@ const Ad: React.FC<AdProps> = ({
   };
 
   return (
-    // @ts-ignore
-    <div className="ad" style={{ background: playerDetails.level < getGameLevelCode(probability) ? "red" : "green" }}>
+    <div
+      className="ad"
+      // @ts-ignore
+      style={{ background: playerDetails.level < getGameLevelCode(probability) ? "#e62e00" : "#2eb82e" }}
+    >
       <h2>{message}</h2>
       <h2>Reward: {reward}</h2>
       <h2>Difficulty: {probability}</h2>
       <h2>ExpiresIn: {expiresIn}</h2>
       <Button onClick={() => handleAdClick(probability)} title="Play now" />
       <Confetti
-        width={window.innerWidth}
-        height={window.innerHeight}
+        width={window.outerWidth}
+        height={1200}
         numberOfPieces={confettiPieces}
         run={isVictoryAnimation}
         gravity={0.5}

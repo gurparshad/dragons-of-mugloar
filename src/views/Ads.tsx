@@ -58,8 +58,8 @@ const Ads = () => {
     if (data.success) {
       setMissionSuccess(true);
       setVictoryAnimation(true);
-      setConfettiPieces(500);
-      setTimeout(handleAnimation, 3000);
+      setConfettiPieces(200);
+      setTimeout(handleAnimation, 2000);
     } else {
       setMissionSuccess(false);
     }
@@ -68,6 +68,12 @@ const Ads = () => {
 
   const handleGameQuit = () => {
     localStorage.removeItem("gameId");
+    setPlayerDetails({
+      ...playerDetails,
+      score: 0,
+      gold: 0,
+      lives: 4,
+    });
     navigate(AppRoutes.HOME);
   };
 
