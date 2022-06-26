@@ -11,15 +11,19 @@ interface ShopItemProps {
 }
 
 const ShopItem: React.FC<ShopItemProps> = ({ id, name, cost, handleClick }) => {
+  const handleShopItemClick = () => {
+    handleClick();
+    setModalOpen(false);
+  };
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   return (
     <div className="shopItem">
       <h2>{name}</h2>
-      <h3>{cost}</h3>
+      <h3>Price: {cost}</h3>
       <Button onClick={() => setModalOpen(true)} title="Buy" />
       <ModalComponent isOpen={isModalOpen}>
         <h4>It cost {cost} gold are you sure you want to but it.</h4>
-        <Button onClick={handleClick} title="Buy now" />
+        <Button onClick={handleShopItemClick} title="Buy now" />
         <Button onClick={() => setModalOpen(false)} title="Cancel" />
       </ModalComponent>
     </div>

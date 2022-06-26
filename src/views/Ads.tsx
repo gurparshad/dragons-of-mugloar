@@ -45,6 +45,16 @@ const Ads = () => {
       gold: data.gold,
       lives: data.lives,
     });
+    if (data.lives === 0) {
+      localStorage.removeItem("gameId");
+      setPlayerDetails({
+        ...playerDetails,
+        score: 0,
+        gold: 0,
+        lives: 4,
+      });
+      navigate(AppRoutes.HOME);
+    }
     if (data.success) {
       setMissionSuccess(true);
       setVictoryAnimation(true);

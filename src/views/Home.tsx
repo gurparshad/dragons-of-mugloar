@@ -25,6 +25,7 @@ const Home = () => {
   };
   return (
     <div>
+      <h1>Are you ready to play? Click the button below to start the game</h1>
       <Button onClick={handleGameStart} title="Start Game" />
     </div>
   );
