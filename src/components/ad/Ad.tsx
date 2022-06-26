@@ -8,7 +8,6 @@ import { getGameLevelCode } from "../../utils/helpers";
 import { AppRoutes } from "../../utils/constants";
 
 interface AdProps {
-  adId: string;
   message: string;
   reward: number;
   expiresIn: number;
@@ -32,7 +31,6 @@ const Ad: React.FC<AdProps> = ({
   expiresIn,
   probability,
   handlePlay,
-  adId,
   isVictoryAnimation,
   confettiPieces,
 }) => {

@@ -1,12 +1,12 @@
 import { createContext, useState, useEffect } from "react";
 
 export const GameIdContext = createContext({
-  gameId: "",
+  gameId: localStorage.getItem("gameId") ?? "",
   setGameId: (value: string) => {},
 });
 
 export const GameIdProvider = ({ children }: any) => {
-  const [gameId, setGameId] = useState("");
+  const [gameId, setGameId] = useState(localStorage.getItem("gameId") ?? "");
 
   return (
     <GameIdContext.Provider

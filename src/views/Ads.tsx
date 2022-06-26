@@ -48,6 +48,11 @@ const Ads = () => {
     await fetchData();
   };
 
+  const handleGameQuit = () => {
+    localStorage.removeItem("gameId");
+    navigate(AppRoutes.HOME);
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -56,6 +61,7 @@ const Ads = () => {
     <div>
       <h1>Ads</h1>
       <button onClick={() => navigate(AppRoutes.SHOP)}>Shop</button>
+      <button onClick={handleGameQuit}>Quit</button>
       {ads.map((ad) => (
         <Ad
           message={ad.message}
@@ -63,7 +69,6 @@ const Ads = () => {
           expiresIn={ad.expiresIn}
           probability={ad.probability}
           handlePlay={() => handlePlay(ad.adId)}
-          adId={ad.adId}
           isVictoryAnimation={isVictoryAnimation}
           confettiPieces={confettiPieces}
         />
