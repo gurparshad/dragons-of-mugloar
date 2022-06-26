@@ -1,30 +1,22 @@
 import React, { useContext, useState } from "react";
-import "./ad.css";
-import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import { PlayerDetailsContext } from "../../context/PlayerDetailsContext";
 import Confetti from "react-confetti";
 import { getGameLevelCode } from "../../utils/helpers";
 import { AppRoutes } from "../../utils/constants";
 import Button from "../button/Button";
+import ModalComponent from "../modal/ModalComponent";
+import "./ad.css";
 
 interface AdProps {
   message: string;
   reward: number;
   expiresIn: number;
   probability: string;
-  handlePlay: () => void;
+  handlePlay: () => {};
   isVictoryAnimation: boolean;
   confettiPieces: number;
 }
-
-const customStyles = {
-  content: {
-    width: "200px",
-    height: "200px",
-    margin: "auto",
-  },
-};
 
 const Ad: React.FC<AdProps> = ({
   message,
@@ -52,10 +44,11 @@ const Ad: React.FC<AdProps> = ({
   };
 
   return (
-    <div className="ad">
+    // @ts-ignore
+    <div className="ad" style={{ background: playerDetails.level < getGameLevelCode(probability) ? "red" : "green" }}>
       <h2>{message}</h2>
       <h2>Reward: {reward}</h2>
-      <h2>Dificulty: {probability}</h2>
+      <h2>Difficulty: {probability}</h2>
       <h2>ExpiresIn: {expiresIn}</h2>
       <Button onClick={() => handleAdClick(probability)} title="Play now" />
       <Confetti
@@ -65,24 +58,22 @@ const Ad: React.FC<AdProps> = ({
         run={isVictoryAnimation}
         gravity={0.5}
       />
-      <Modal isOpen={isModalOpen} style={customStyles}>
+      <ModalComponent isOpen={isModalOpen}>
         <Button onClick={() => setModalOpen(false)} title="Close" />
         {levelCode > playerDetails.level ? (
           <>
             <h3>
               You are at level {playerDetails.level} which is not sufficient for this task. We recommend to upgrade.
             </h3>
-            <h3>{levelCode}</h3>
             <Button onClick={() => navigate(AppRoutes.SHOP)} title="Upgrade" />
             <Button onClick={handleClickPlay} title="Play anyway" />
           </>
         ) : (
           <>
-            <h3>{levelCode}</h3>
             <Button onClick={handleClickPlay} title="Play Now" />
           </>
         )}
-      </Modal>
+      </ModalComponent>
     </div>
   );
 };
