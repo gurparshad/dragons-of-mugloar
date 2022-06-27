@@ -16,7 +16,7 @@ export class MugloarDragonApi {
 
   private handleError(err: AxiosError) {
     //@ts-ignore
-    throw new Error(err?.response?.data?.message);
+    throw new Error(err.response.data.message);
   }
 
   private handleResult(res: AxiosResponse) {
